@@ -27,8 +27,18 @@ r2 = r2_score(y_test, y_pred)
 print('Coefficients:', model.coef_)
 print('Intercept:', model.intercept_)
 print("Mean Squared Error:", mse)
-print("R² Score:", r2)
+print("R2 Score:", r2)
 
 new_salary = model.predict(pd.DataFrame([[7]], columns=['YearsExperience']))
-
 print("predicted new-salary:",new_salary)
+
+
+# multiple linear regression
+
+def fit_multiple_linear_regression(x, y):
+    x_b = add_bias_column(x)
+    beta = inverse(transpose(x_b) * x_b) * transpose(x_b) * y
+    return beta  
+def predict(x_new, beta):
+    x_b = add_bias_column(x_new)
+    return x_b * beta
